@@ -1,0 +1,31 @@
+// For 8-bit Subtraction
+
+# ORG 7000H
+LXI H, 7501                   // Get address of ist no. in HL pair
+MOV A, M                      // Move no. into accumulator
+INX H                         // HL points 7502 H.
+SBB M                         // Substract 2nd no. from Ist no.
+INX H                         //HL points 7503 H.
+MOV M, A                      // Move contents of acc. to memory
+RST 1                         // Terminate
+#ORG 7501H                    // Store no. at address
+#DB 20,10                     // Get the two 8 bit no. at successive location
+
+
+
+// For 16-bit Subtraction
+
+# ORG 7000H
+LHLD 7501                     // Get 1st 16 bit no. in HL pair
+XCHG                          // Exchange HL pair with DE.
+LHLD 7503                     // Get 2nd 16 bit no. in HL pair
+MOV A, E                      // Get lower byte of ist no.
+SUB L                         // Subtract lower byte of 2nd no.
+MOV L, A                      // Store the result in reg. L
+MOV A, D                      // Get higher byte of Ist no.
+SBB H                         // Subtract higher byte of 2nd no. with borrow
+MOV H,A                       // Move from acc. To H
+SHLD 7505                     // Store 16 bit result at 7505 H &7506 H
+RST 1                         // Terminate
+# ORG 7501H                   // Store inputs at the address
+# DB 30,40,10,20              // Get two 16 bit no. from successive locations
