@@ -1,0 +1,22 @@
+// Arrange data bytes in Ascending Order
+
+#ORG C500H
+#DB BC, AB, 78, 93, 08, 05, 0A, 0B, 57, 71
+#ORG C000H
+       MVI D, 0A
+LOOP1: MOV C, D
+       LXI H, C500
+LOOP2: MOV A, M
+       INX H
+       MOV B, M
+       CMP B
+       JC SKIP
+       MOV M, A
+       DCX H
+       MOV M, B
+       INX H
+SKIP:  DCR C
+       JNZ LOOP2
+       DCR D
+       JNZ LOOP1
+       HLT
