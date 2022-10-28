@@ -1,0 +1,21 @@
+#ORG C300H
+#DB 05H
+#ORG 0700H
+      LXI H,C300
+      MOV A,M
+      CPI 00
+      JNZ SKIP
+      MVI A,01
+      JZ SAVE
+SKIP: MOV D,M
+      DCR D
+FACT: MOV B,D
+      MOV C,A
+      XRA A
+MULT: ADD C
+      DCR B
+      JNZ MULT
+      DCR D
+      JNZ FACT
+SAVE: STA C301
+HLT
