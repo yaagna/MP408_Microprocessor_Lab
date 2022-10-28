@@ -1,0 +1,16 @@
+#ORG C100H
+#DB FF, 00, 01, 02, 03, 04, 05, 06, 07, 08
+#ORG 0700H
+      LXI H,C100
+      MVI B,0A
+      XRA A
+LOOP: ADD M
+      JNC SKIP
+      INR C
+SKIP: INX H
+      DCR B
+      JNZ LOOP
+      STA C201
+      MOV A,C
+      STA C200
+ HLT
