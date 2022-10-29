@@ -1,4 +1,6 @@
 # MP408_Microprocessor_Lab
+[![DOI](https://zenodo.org/badge/558865701.svg)](https://zenodo.org/badge/latestdoi/558865701)
+
 All the programs done in MP408 Microprocessor Lab
 
 |Program Name|Aim of the Program|
